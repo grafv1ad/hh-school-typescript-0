@@ -6,7 +6,8 @@
   "author": "'Ivan Petropolsky' <i.petropolsky@hh.ru>",
   "license": "MIT",
   "scripts": {
-    "postinstall": "ln -sf $(pwd)/githooks/* .git/hooks"
+    "postinstall": "ln -sf $(pwd)/githooks/* .git/hooks",
+    "tsc": "tsc index.ts && node index.js"
   },
   "devDependencies": {
     "eslint": "8.29.0",
@@ -14,5 +15,8 @@
     "eslint-plugin-prettier": "4.2.1",
     "lint-staged": "13.1.0",
     "prettier": "2.8.0"
+  },
+  "dependencies": {
+    "typescript": "5.3.3"
   }
 }
