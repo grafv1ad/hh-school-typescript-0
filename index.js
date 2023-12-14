@@ -133,6 +133,15 @@ const countRealTypes = (arr) => {
 
 // Tests
 
+testBlock('areEqual');
+
+test('Equal', areEqual(123, 123), true);
+test('Number and string', areEqual(321, '321'), false);
+test('Equal arrays', areEqual([1, 2], [1, 2]), true);
+test('Not equal arrays', areEqual([1, 2], [1, 3]), false);
+test('Different types', areEqual(['array'], true), false);
+test('Undefined and empty values', areEqual(undefined), true);
+
 testBlock('getType');
 
 test('Boolean', getType(true), 'boolean');
@@ -147,6 +156,7 @@ test(
 );
 test('Undefined', getType(undefined), 'undefined');
 test('Null', getType(null), 'object');
+test('Empty value', getType(), 'undefined');
 
 testBlock('allItemsHaveTheSameType');
 
@@ -159,6 +169,8 @@ test('All values are strings but wait', allItemsHaveTheSameType(['11', new Strin
 test('Values like a number', allItemsHaveTheSameType([123, 123 / 'a', 1 / 0]), true);
 
 test('Values like an object', allItemsHaveTheSameType([{}]), true);
+
+test('Empty array', allItemsHaveTheSameType([]), true);
 
 testBlock('getTypesOfItems VS getRealTypesOfItems');
 
@@ -219,6 +231,8 @@ test('Check real types', getRealTypesOfItems(knownTypes), [
     'event',
 ]);
 
+test('Empty array', getRealTypesOfItems([]), []);
+
 testBlock('everyItemHasAUniqueRealType');
 
 test('All value types in the array are unique', everyItemHasAUniqueRealType([true, 123, '123']), true);
@@ -226,6 +240,8 @@ test('All value types in the array are unique', everyItemHasAUniqueRealType([tru
 test('Two values have the same type', everyItemHasAUniqueRealType([true, 123, '123' === 123]), false);
 
 test('There are no repeated types in knownTypes', everyItemHasAUniqueRealType(knownTypes), true);
+
+test('Empty array', everyItemHasAUniqueRealType([]), true);
 
 testBlock('countRealTypes');
 
@@ -241,4 +257,4 @@ test('Counted unique types are sorted', countRealTypes([{}, null, true, !null, !
     ['object', 1],
 ]);
 
-// Add several positive and negative tests
+test('Empty array', countRealTypes([]), []);
